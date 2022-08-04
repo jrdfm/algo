@@ -1,5 +1,6 @@
-#!/usr/bin/python3
 #!/usr/local/bin/python
+#!/usr/bin/python3
+
 
 
 
@@ -15,15 +16,15 @@ def maxheapify(i):
         largestnode = leftnode
     if rightnode <= heapsize and A[rightnode] > A[largestnode]:
         largestnode = rightnode
-    print(f'heapsize {heapsize}')
-    print(f'largest node = {largestnode}, i = {i}\nabs(largestnode - i) = {abs(largestnode - i) }')
+    # print(f'heapsize {heapsize}')
+    # print(f'largest node = {largestnode}, i = {i}\nabs(largestnode - i) = {abs(largestnode - i) }')
     if abs(largestnode - i) > 4:
         c *= 4
     elif abs(largestnode - i) == 0:
         c = 0
     else:
         c *= 1
-    print(f'c {c}')
+    # print(f'c {c}')
     if largestnode != i:
         temp = A[i]
         A[i] = A[largestnode]
@@ -37,7 +38,7 @@ def converttomaxheap():
 
 def heapsort():
     global heapsize
-    converttomaxheap()
+    #converttomaxheap()
     print('After converttomaxheap:')
     print(f'A {A[1:]}')
 
@@ -79,6 +80,21 @@ if __name__ == "__main__":
 
 
     A = [i for i in range(0,16)]
-    c = maxheapify(1)
+    # c = maxheapify(1)
     print(f'A {A[1:]}')
-    print(f'Total work maxheapify(1) = {c}C')
+    tmp = A[15]
+    A[15] = A[1] 
+    A[1] = tmp
+    print(f'A {A[1:]}')
+    heapsort()
+    print(f'A[1:] {A[1:]}')
+    # print(f'Total work maxheapify(1) = {c}C')
+    # A = [0,1,101,4,3,8,2,9,10,6,5,100,17]
+    # heapsize = len(A)-1;
+    # nodecount = len(A)-1
+    # print(f'A {A[1:]}')
+    # i = [6,5,4,3,2,1]
+    # for j in i:
+    #     maxheapify(j)
+    #     print(f'maxheapify(A, {j}){A[1:]}')
+

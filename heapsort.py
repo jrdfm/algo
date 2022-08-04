@@ -48,6 +48,7 @@ if __name__ == "__main__":
     A = []
     for i in range(0,10):
         A.append(random.randint(0,100))
+    A = [0,1,101,4,3,8,2,9,10,6,5,100,17]
     heapsize = len(A)-1;
     nodecount = len(A)-1
     print(A[1:])

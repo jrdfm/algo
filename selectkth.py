@@ -1,3 +1,6 @@
+#!/usr/local/bin/python
+
+
 import random
 import math
 
@@ -47,19 +50,75 @@ def mom(A):
         return medlist[0]
     return(selectkth(medlist,0,len(medlist)-1,(len(medlist)+1)//2))
 
-LIST = []
-while len(LIST) < 20:
-    r = random.randint(0,100)
-    if r not in LIST:
-        LIST.append(r)
 
-print('Array: '+str(LIST))
-kwish = random.randint(1,len(LIST))
-kth = selectkth(LIST,0,len(LIST)-1,kwish)
-print("I'm looking for rank: " + str(kwish))
-print('It is: ' + str(kth))
-print('Here is the Python sorted array for checking:')
-LIST.sort()
-print(LIST)
-if LIST[kwish-1] == kth:
-    print('Success!')
+def quicksort(A,l,r):
+    if l<r:
+        print(f'quicksort input {A}')
+        resultingpivotindex = partition(A,l,r)
+        quicksort(A,l,resultingpivotindex-1)
+        quicksort(A,resultingpivotindex+1,r)
+
+
+
+def partition(A,l,r):
+    # print('Subarray: ' + str(A[l:r+1]))
+    # To use a different pivotvalue
+    # swap it with A[r] here.
+    pivotvalue = A[r]
+    t = l
+    for i in range(l,r):
+        if A[i] <= pivotvalue:
+            temp = A[t]
+            A[t] = A[i]
+            A[i] = temp
+            t = t + 1
+    temp = A[t]
+    A[t] = A[r]
+    A[r] = temp
+    # print('Pivot around final element.')
+    # print('Result: ' + str(A[l:r+1]))
+    return(t)
+
+
+if __name__ == "__main__":
+
+    LIST = []
+    while len(LIST) < 20:
+        r = random.randint(0,100)
+        if r not in LIST:
+            LIST.append(r)
+    LIST = [10,8,5,12,11,15,21,99,7,6,70,17,3,35,71,1,2,30,36,31,32,33,60,29,28,34,40,41,80]
+    LIST = [10,8,5,12,11,15,21,99,7,6,70,17,3,35,71,1,2,30,36,31,32,33,60,29,28]
+    print('Array: '+str(LIST))
+    print(f'length list {len(LIST)}')
+    
+    medians = []
+    for i in range(math.ceil(len(LIST)/5)):
+        j = 5*i 
+        print(f'LIST {LIST[j:j + 5]}')
+        lst = LIST[j:j+5]
+        l = len(lst)
+        quicksort(lst,0,l - 1)
+        median = lst[2]
+        print(f'median {median}')  
+        medians.append(median)
+
+        print(f'SORTED LIST {lst}')  
+
+    print(f'medians {medians}')
+    medians.sort()
+    print(f'sorted {medians} MOM {medians[2]}')
+    
+    print(f'MOM {mom(LIST)}')
+
+    kwish = random.randint(1,len(LIST))
+    kth = selectkth(LIST,0,len(LIST)-1,kwish)
+    print("I'm looking for rank: " + str(kwish))
+    print('It is: ' + str(kth))
+    print('Here is the Python sorted array for checking:')
+    LIST.sort()
+    print(LIST)
+    if LIST[kwish-1] == kth:
+        print('Success!')
+
+
