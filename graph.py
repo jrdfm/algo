@@ -2,7 +2,7 @@
 
 from functools import reduce
 
-
+# adjacency matrix to adjacency list
 def AM_AL(A):
     AL = []
     for i in range(len(A)):
@@ -13,7 +13,7 @@ def AM_AL(A):
         AL.append(L)   
     print(f'AL {AL}')
 
-
+# adjacency list to adjacency matrix
 def AL_AM(A):
     AM = [[0]*len(A) for _ in range(len(A))]
     c = 0 
@@ -29,20 +29,22 @@ def AL_AM(A):
 
     print(f'AM {AM} c {c}')
 
+# adjacency matrix walk?
 def walk(A, V):
-    t = True
     for i in range(len(V) - 1):
         # print(f'i {i}')
         # print(f'A[V[{i}]][V[{i+1}]] = {A[V[i]][V[i+1]]}')
-        t = t and A[V[i]][V[i+1]] == 1
-    return t
-
-def walk(AL, V):
+        if A[V[i]][V[i+1]] != 1:
+            return False
+    return True
+# adjacency list walk?
+def walk_al(AL, V):
     for i in range(len(V) - 1):
         if not V[i+1] in AL[V[i]]:
             return False 
     return True
 
+# adjacency matrix path?
 def path(A, V):
     if walk(A,V):
         for i in range(len(V)):
@@ -51,6 +53,7 @@ def path(A, V):
                 return False 
     return True
 
+# adjacency matrix trail?
 def trail(A,V):
     t = [(V[i],V[i+1]) for i in range(len(V)-1)]
     if walk(A, V):
@@ -59,7 +62,7 @@ def trail(A,V):
             if in_list(t[i],t[i+1:]) or in_list(rev,t[i+1:]):
                 return False
     return True
-
+# helper 
 def in_list(x,lst):
     return x in lst
 
@@ -71,11 +74,15 @@ if __name__ == "__main__":
     AL  = [[1, 2], [0, 2], [0, 1, 3], [2]]
     AL_AM(AL)
 
+    #v = [[3,2,0,2,1],[2,1,2,3],[3,2,1,0],[0,1,2,0]]
     v = [3,2,0,2,1]
 
     print(f'walk {walk(A,v)}')
 
     print(f'trail {trail(A,v)}')
+
+
+
 
 
 
