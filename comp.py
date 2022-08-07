@@ -33,9 +33,14 @@ if __name__ == "__main__":
 
     # A = [3,5,4,600]
 
-    for i in range(10):
+    for i in range(1000):
         A = [random.randrange(0,100) for _ in range(4)]
-        print(f'A {A}')
-        comp(A)
-        print(f'A sorted {A}\n')
+        A_ = A.copy()
+        # print(f'A {A}')
+        assert A.sort() == A_.sort(), f'sort failed'
+        print(f'pass')
+        # print(f'A sorted {A}\n')      
+
+        # comp(A)
+
 
