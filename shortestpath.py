@@ -1,3 +1,6 @@
+#!/usr/local/bin/python
+
+
 def shortestpath(AL,n,u,up):
     dist = [float('inf')] * n
     pred = [None] * n
@@ -22,28 +25,29 @@ def shortestpath(AL,n,u,up):
             else:
                 print('__Already done: '+str(y))
 
-AL = [
-    [1, 3],
-    [0, 2, 4],
-    [1, 5],
-    [0, 4, 6],
-    [1, 3, 7],
-    [2, 8],
-    [3, 8],
-    [4],
-    [5, 6]
-]
-n = 9
+if __name__ == "__main__":
 
-u = 0
-up = 7
-[dist,pred] = shortestpath(AL,n,u,up)
+    AL = [
+        [1, 3],
+        [0, 2, 4],
+        [1, 5],
+        [0, 4, 6],
+        [1, 3, 7],
+        [2, 8],
+        [3, 8],
+        [4],
+        [5, 6]
+    ]
+    n = len(AL)
+    u = 0
+    up = 7
+    [dist,pred] = shortestpath(AL,n,u,up)
 
-path = []
-x = up
-while x != None:
-    path.append(x)
-    x = pred[x]
-path.reverse()
-print('Path: '+str(path))
-print('Length: '+str(len(path)-1))
+    path = []
+    x = up
+    while x != None:
+        path.append(x)
+        x = pred[x]
+    path.reverse()
+    print('\nPath: '+str(path))
+    print('Length: '+str(len(path)-1))

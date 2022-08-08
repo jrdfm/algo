@@ -1,6 +1,5 @@
 #!/usr/local/bin/python
 
-from functools import reduce
 
 # adjacency matrix to adjacency list
 def AM_AL(A):
