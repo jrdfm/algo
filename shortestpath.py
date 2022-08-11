@@ -51,3 +51,5 @@ if __name__ == "__main__":
     path.reverse()
     print('\nPath: '+str(path))
     print('Length: '+str(len(path)-1))
+
+    print(f'pred {pred}')

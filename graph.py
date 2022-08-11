@@ -10,7 +10,8 @@ def AM_AL(A):
             if A[i][j] == 1:
                 L.append(j)
         AL.append(L)   
-    print(f'AL {AL}')
+    # print(f'AL {AL}')
+    return AL
 
 # adjacency list to adjacency matrix
 def AL_AM(A):
@@ -26,7 +27,8 @@ def AL_AM(A):
             AM[i][A[i][j]] = 1
             c += 1
 
-    print(f'AM {AM} c {c}')
+    # print(f'AM {AM} c {c}')
+    return AM
 
 # adjacency matrix walk?
 def walk(A, V):
