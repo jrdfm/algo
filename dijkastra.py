@@ -1,17 +1,6 @@
 #!/usr/bin/python3
-import math
-import heapq
-from PQ import PriorityQueue
 
-class Node:    
-    def __init__(self,i,d):
-        self.index = i
-        self.dist = d
-    
-    def idx(self):
-        return self.index
-    def __str__(self):
-        return f'i: {self.index}, d: {self.dist}'
+
 
 def dijkstra(G, s):
     V = len(G)
@@ -20,31 +9,25 @@ def dijkstra(G, s):
     S = []
     dist[s] = 0
     
-    Q = PriorityQueue() # Create Priority queue
-    Q.push(Node(s, dist[s]))
-    # Q = dist.copy()
-    # heapq.heapify(Q)
-
-    # print(f'Q {Q}')
+    Q = [(s, 0)]
     while len(S) < V:
-        x = Q.pop().idx()
+        x = Q.pop(0)[0]
         while x in S:
-            print(f'pop')
-            x = Q.pop().idx()
-
-        print(f'x {x} type {type(x)} dist {dist} S {S} \n ')
+            # print(f'pop')
+            x = Q.pop(0)[0]
         for i in range(len(G[x])):
-            print(f'type i {type(i)}  type dist[i] {type(dist[i])} Q len {Q._len}')
             if G[x][i]  != 0 and dist[x] + G[x][i] < dist[i]:
                 dist[i] = dist[x] + G[x][i]
-
-                Q.push(Node(i, dist[i]))
+                Q.append((i, dist[i]))
+                Q = sorted(Q, key= lambda x :x[1])
                 pred[i] = x
         S.append(x)
-
+    return pred
 
 if __name__ == "__main__":
-
+    
+    import graphviz
+    
     G = [[ 0 , 10 , 0 , 20 , 0 , 0 , 0 , 0 , 0] ,
         [ 10 , 0 , 20 , 0 ,100 , 0 , 0 , 0 , 0] ,
         [ 0 , 20 , 0 , 0 , 0 , 60 , 0 , 0 , 0] ,
@@ -54,4 +37,16 @@ if __name__ == "__main__":
         [ 0 , 0 , 0 ,120 ,100 , 0 , 0 , 10 , 0] ,
         [ 0 , 0 , 0 , 0 , 30 , 0 , 10 , 0 , 20] ,
         [ 0 , 0 , 0 , 0 , 80 ,100 , 0 , 20 , 0]]
-    dijkstra(G,0)
+
+    pred = dijkstra(G,0)
+
+    print(f'pred {pred}')
+
+
+    g = graphviz.Graph('G')
+
+    for i in range(len(pred)):
+        if pred[i] is not None:
+            g.edge(str(pred[i]),str(i))
+        
+    g.render("G", format="png")
