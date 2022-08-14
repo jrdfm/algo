@@ -1,4 +1,6 @@
+#!/usr/bin/python3
 #!/usr/local/bin/python
+
 
 
 def shortestpath(AL,W,n,u,up):
@@ -100,13 +102,14 @@ if __name__ == "__main__":
 
     from graph import AL_AM
 
+
     AM = AL_AM(AL)
-    print(f'AM {AM} len(AM) {len(AM)}')
+    # print(f'AM {AM} len(AM) {len(AM)}')
 
     pred, [c,w,f]  = short(AM,len(AM),0)
     print(f'pred {pred} c, w, f {c , w, f}')      
 
-    A = [[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]] 
+    # A = [[0,1,1,0],[1,0,1,0],[1,1,0,1],[0,0,1,0]] 
 
     A = [[0,1,1,0,0,0],[1,0,1,0,0,0],[1,1,0,1,0,0],[0,0,1,0,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0]]
 
