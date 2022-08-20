@@ -19,12 +19,28 @@ def dijkstra(G, s):
         for i in range(len(G[x])):
             if G[x][i]  != 0 and dist[x] + G[x][i] < dist[i]:
                 dist[i] = dist[x] + G[x][i]
+                # print(f'Q {Q}')
+                # idx = insort(Q,dist[i])
+                # print(f'Q,dist[i] {Q,dist[i]} idx {idx}')
+                # Q.insert(idx,(i,dist[i]))
                 Q.append((i, dist[i]))
                 Q = sorted(Q, key= lambda x :x[1])
                 pred[i] = x
         S.append(x)
         print(f'{50 * "*"} \n i{c}:\n S {S} \n Dist {dist}\n pred {pred}')
     return pred
+
+
+def insort(A,x):
+    L = 0
+    R = len(A)-1
+    while L <= R:
+        C = (L+R)//2
+        if x < A[C][1]:
+            R = C-1
+        if x > A[C][1]:
+            L = C+1
+    return L
 
 if __name__ == "__main__":
     
